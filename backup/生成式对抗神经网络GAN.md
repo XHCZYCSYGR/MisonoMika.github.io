@@ -64,11 +64,9 @@ $$
 \underset{D \in 1-Lipschitz}{max}  E_{y \sim P_{data}} [D(y)] - E_{y \sim P_G}[D(y)] 
 $$
 
-其中 $D \in 1-Lipschitz$表示D也能够当是平缓的（smooth enough），由此保证，当 $P_{data}$和 $P_{G}$分布不重叠时，D不会为相应部分分配  $\pm \infty$ 
+其中 $D \in 1-Lipschitz$表示D也能够当是平缓的（smooth enough），由此保证，当 $P_{data}$和 $P_{G}$分布不重叠时，D不会为相应部分分配  $\pm \infty$ ，如下图所示。
 
-
-
-
+![Image](https://github.com/user-attachments/assets/5e56f2ff-2e13-4ae5-9317-a3e242202304)
 
 
 
