@@ -133,7 +133,16 @@ $$</p>
 <ol>
 <li>一般情况下， $P_{data}$和 $P_G$在高维空间中的测度较小。以二维平面举例， $P_G$和 $P_{data}$的分布可能就是两条线（平面上大部分点都不属于我们想要的概率分布），这会导致两个分布的重合部分极小（几乎可以忽略不计），最终使D没有改善或修改。</li>
 <li>即使两者重合部分可以避免上面的情况，我们也有可能因为sampling过程中的样本数目过少，导致取样点无法充分表示 $P_{data}$和 $P_{G}$的分布。</li>
-</ol></div>
+</ol>
+<p>在上面两种原因的作用下，以使用JS散度为例，可能的实验结果表示为D分辨的正确率为100%，且loss为 $log2$。也就是说，通过loss和D的输出，我们无法判断模型是否真正学到东西，只能通过输出G的图片人眼观察是否有生成效果。（难用o(≧口≦)o）</p>
+<h2>解决JS散度带来的问题——————Wasserstein distance</h2>
+<p>Wasserstein distance（瓦瑟斯坦距离），也称为Earth Mover's Distance (EMD)。通俗地来讲，原始分布记为Q，G输出的分布记为P，EMD是将P分布调整为Q所需“距离”的度量。<br>
+由此，即使JS散度相同，我们也能通过EMD的数值来了解P和Q是否在接近。换一个角度说，EMD的值可以反应G是否真正在学习。<br>
+但是，对于相同的P和Q，调整方案有很多种（对应不同的EMD），我们取最小的作为EMD值，数学公式表达如下：</p>
+<p>$$
+\underset{D \in 1-Lipschitz}{max}  E_{y \sim P_{data}} [D(y)] - E_{y \sim P_G}[D(y)]
+$$</p>
+<p>其中 $D \in 1-Lipschitz$表示D也能够当是平缓的（smooth enough），由此保证，当 $P_{data}$和 $P_{G}$分布不重叠时，D不会为相应部分分配  $\pm \infty$</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
