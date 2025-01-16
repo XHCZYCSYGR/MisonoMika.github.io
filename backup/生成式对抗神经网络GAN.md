@@ -11,5 +11,14 @@
 - 固定G.v2，更新D.v1的参数，使更新后D.v2可以分辨Y.v2和X的区别
 - 循环上述步骤得到具有生成的G.vxxx
 
+# GAN的理论支持
+## GAN遇到的问题
+我们要优化的目标函数：
+    
+$$
+G^* = arg \  \underset{G}{min} \ Div(P_G \  , \  P_{data})
+$$
 
-
+其中， $P_G$表示经过Generator输出的Y的分布， $P_{data}$表示X的原始分布，Div是divergence的缩写。也就是说，我们的目标是找到一个最佳的G，使 $P_G$和 $P_{data}$ 的概率分布最为接近。
+一般情况下， $Div(P_G \  , \  P_{data})$ 可以是KL散度或JS散度，但是，对于未知的 $P_{data}$，若按照定义式计算，可行性极差（学习途中偶遇超级积分，拼尽全力无法战胜）。
+GAN的解决方案：**Sampling is GOOD enough**

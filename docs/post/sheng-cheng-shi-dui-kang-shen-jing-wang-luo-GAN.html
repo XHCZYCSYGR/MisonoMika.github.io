@@ -102,7 +102,16 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>固定D.v1，更新G.v1的参数（Z也会变），使更新后G.v2的输出Y.v2可以“骗过”D.v1，即经D.v1判决或评分后，Y.v2和X没有区别</li>
 <li>固定G.v2，更新D.v1的参数，使更新后D.v2可以分辨Y.v2和X的区别</li>
 <li>循环上述步骤得到具有生成的G.vxxx</li>
-</ul></div>
+</ul>
+<h1>GAN的理论支持</h1>
+<h2>GAN遇到的问题</h2>
+<p>我们要优化的目标函数：</p>
+<p>$$
+G^* = arg \  \underset{G}{min} \ Div(P_G \  , \  P_{data})
+$$</p>
+<p>其中， $P_G$表示经过Generator输出的Y的分布， $P_{data}$表示X的原始分布，Div是divergence的缩写。也就是说，我们的目标是找到一个最佳的G，使 $P_G$和 $P_{data}$ 的概率分布最为接近。<br>
+一般情况下， $Div(P_G \  , \  P_{data})$ 可以是KL散度或JS散度，但是，对于未知的 $P_{data}$，若按照定义式计算，可行性极差（学习途中偶遇超级积分，拼尽全力无法战胜）。<br>
+GAN的解决方案：<strong>Sampling is GOOD enough</strong></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -266,6 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
-
+<script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 </html>
