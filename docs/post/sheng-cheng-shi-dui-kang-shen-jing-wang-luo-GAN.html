@@ -178,7 +178,8 @@ $$</p>
 <p>文生图的Conditional GAN结构大致如下：</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12"><img src="https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12" alt="Image" style="max-width: 100%;"></a></p>
 <p>相应的D不能只辨别生成的y是否真实，判断y是否满足x的描述也要进行考虑。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d"><img src="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d" alt="Image" style="max-width: 100%;"></a></p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d"><img src="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d" alt="Image" style="max-width: 100%;"></a></p>
+<p>上面对于数据集要求略有严格，首先每张图片要有对应的文字描述（特征），另外，D在也要能够辨别出当y不符合X的描述时，生成的y是不好的。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

@@ -117,6 +117,7 @@ $$
 
 ![Image](https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d)
 
+上面对于数据集要求略有严格，首先每张图片要有对应的文字描述（特征），另外，D在也要能够辨别出当y不符合X的描述时，生成的y是不好的。
 
 
 
