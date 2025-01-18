@@ -109,6 +109,14 @@ $$
 
 更进一步，既然可以限定人脸特征，为什么不把人脸也作为特征输入呢？由此文生图的GAN概念已成。
 
+文生图的Conditional GAN结构大致如下：
+
+![Image](https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12)
+
+相应的D不能只辨别生成的y是否真实，判断y是否满足x的描述也要进行考虑。
+
+![Image](https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d)
+
 
 
 

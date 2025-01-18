@@ -174,7 +174,11 @@ $$</p>
 <p>上面我们让GAN生成了和输入X相近分布的内容，在此基础上，我们可以加入一些限制。<br>
 例如：</p>
 <p>我已经有了一个可以生成不同人脸的GAN，但是我还想得寸进尺，GAN还可以接收文字作为输入，内容为人脸的描述（瞳色、发色、人种等），这样我就得到了一个可以限定输出的GAN。</p>
-<p>更进一步，既然可以限定人脸特征，为什么不把人脸也作为特征输入呢？由此文生图的GAN概念已成。</p></div>
+<p>更进一步，既然可以限定人脸特征，为什么不把人脸也作为特征输入呢？由此文生图的GAN概念已成。</p>
+<p>文生图的Conditional GAN结构大致如下：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12"><img src="https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12" alt="Image" style="max-width: 100%;"></a></p>
+<p>相应的D不能只辨别生成的y是否真实，判断y是否满足x的描述也要进行考虑。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d"><img src="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
