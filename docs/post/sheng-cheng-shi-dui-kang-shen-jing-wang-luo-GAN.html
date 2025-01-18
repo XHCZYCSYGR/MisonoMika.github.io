@@ -143,7 +143,38 @@ $$</p>
 \underset{D \in 1-Lipschitz}{max}  E_{y \sim P_{data}} [D(y)] - E_{y \sim P_G}[D(y)]
 $$</p>
 <p>其中 $D \in 1-Lipschitz$表示D是足够平缓的（smooth enough），由此保证，当 $P_{data}$和 $P_{G}$分布不重叠时，D不会为相应部分分配  $\pm \infty$ ，如下图所示。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5e56f2ff-2e13-4ae5-9317-a3e242202304"><img src="https://github.com/user-attachments/assets/5e56f2ff-2e13-4ae5-9317-a3e242202304" alt="Image" style="max-width: 100%;"></a></p></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5e56f2ff-2e13-4ae5-9317-a3e242202304"><img src="https://github.com/user-attachments/assets/5e56f2ff-2e13-4ae5-9317-a3e242202304" alt="Image" style="max-width: 100%;"></a></p>
+<h1>GAN如何评价好坏？</h1>
+<p>通过上面的介绍，我们已经能将GANtrain起来，但是，仅仅观察loss我们是无法评价G的生成效果，下面介绍评价G生成效果的几种方案</p>
+<h2>原始人，起洞！</h2>
+<p>人工辨别，一眼盯真。</p>
+<h2>现代人</h2>
+<p>将G生成的输出（图片、文字等）作为一个（图片，文本）分类器的输入，观察分类器的输出（概率分布、类别评分等），如果分类器输出的概率分布比较集中，则说明G的生成效果较好（或准确）。</p>
+<h3>现代人的问题</h3>
+<p>G可能会出现Mode Collapase（模式崩溃）的问题，即G在生成时为了使分类器的输出“优秀”，可能会反反复复输出同一类图片，进而忽略了原始数据的概率分布（失去多样性），如下图所示。</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ab85e51-a2fa-4f90-a828-d47f6f0ac609"><img src="https://github.com/user-attachments/assets/9ab85e51-a2fa-4f90-a828-d47f6f0ac609" alt="Image" style="max-width: 100%;"></a></p>
+<p>通过上面的分析，我们发现，当发生上述情况时，G生成的内容种类非常有限，那么我们就可以通过观察分类器输出类别的平均概率分布 $p(c|y)$，如果平均概率的分布较为集中，表示G生成的内容十分有限，G的生成效果可能很差。</p>
+<h2>三体人——————FID</h2>
+<p>上面我们说过，我们通过分类器评价G生成的效果，但是可能会产生模式崩溃的问题，究其根本其实是G生成的内容特征过于单一（不同与原始分布）。<br>
+那么，我们就可以通过比较G和原始数据的特征相似度来评价模型的好坏，，而恰好我们引入的分类器恰好可以提取输入的特征，FID由此诞生。<br>
+FID的步骤（简）：</p>
+<ol>
+<li>将G的输出和原始数据通过classifier提取特征，分别记为 $G.l$、 $P.l$（注：数据量较大，一般需要采样）</li>
+<li>将 $G.l$、 $P.l$拟合为高斯分布</li>
+<li>计算两者的FID</li>
+</ol>
+<p>FID计算公式如下：</p>
+<p>$$
+FID = || \mu_r - \mu_g ||^{2} + Tr( \Sigma _r + \Sigma _g - 2( \Sigma _r \  \Sigma _g)^{\frac{1}{2}} )
+$$</p>
+<p>其中， $\mu_r$和 $\Sigma_r$分别为真实图像特征的均值和协方差矩阵， $\mu_g$和 $\Sigma_g$分别为生成图像特征的均值和协方差矩阵， $Tr$表示矩阵的迹。<br>
+由于FID值表示两个高斯分布之间距离，所以FID值越小，代表 $P_G$和 $P_{data}$越接近。</p>
+<p>但是，神也会受伤。FID也有它的问题。G有可能只是“记住”了数据集的分布，而不是生成了类似于数据集的分布。通俗来说，G完成的任务就是查表，即输出和原来的内容相同，没有“生成新内容”的能力。</p>
+<h1>DLC：Conditional GAN</h1>
+<p>上面我们让GAN生成了和输入X相近分布的内容，在此基础上，我们可以加入一些限制。<br>
+例如：</p>
+<p>我已经有了一个可以生成不同人脸的GAN，但是我还想得寸进尺，GAN还可以接收文字作为输入，内容为人脸的描述（瞳色、发色、人种等），这样我就得到了一个可以限定输出的GAN。</p>
+<p>更进一步，既然可以限定人脸特征，为什么不把人脸也作为特征输入呢？由此文生图的GAN概念已成。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
