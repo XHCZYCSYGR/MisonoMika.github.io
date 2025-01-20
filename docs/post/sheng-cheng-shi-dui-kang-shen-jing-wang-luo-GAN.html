@@ -170,7 +170,7 @@ $$</p>
 <p>其中， $\mu_r$和 $\Sigma_r$分别为真实图像特征的均值和协方差矩阵， $\mu_g$和 $\Sigma_g$分别为生成图像特征的均值和协方差矩阵， $Tr$表示矩阵的迹。<br>
 由于FID值表示两个高斯分布之间距离，所以FID值越小，代表 $P_G$和 $P_{data}$越接近。</p>
 <p>但是，神也会受伤。FID也有它的问题。G有可能只是“记住”了数据集的分布，而不是生成了类似于数据集的分布。通俗来说，G完成的任务就是查表，即输出和原来的内容相同，没有“生成新内容”的能力。</p>
-<h1>DLC：Conditional GAN</h1>
+<h1>DLC1：Conditional GAN</h1>
 <p>上面我们让GAN生成了和输入X相近分布的内容，在此基础上，我们可以加入一些限制。<br>
 例如：</p>
 <p>我已经有了一个可以生成不同人脸的GAN，但是我还想得寸进尺，GAN还可以接收文字作为输入，内容为人脸的描述（瞳色、发色、人种等），这样我就得到了一个可以限定输出的GAN。</p>
@@ -179,7 +179,17 @@ $$</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12"><img src="https://github.com/user-attachments/assets/e44606da-3d0d-453a-9535-38dba7467e12" alt="Image" style="max-width: 100%;"></a></p>
 <p>相应的D不能只辨别生成的y是否真实，判断y是否满足x的描述也要进行考虑。</p>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d"><img src="https://github.com/user-attachments/assets/4879d01a-c9b5-4ce4-9374-7b19b0a9a54d" alt="Image" style="max-width: 100%;"></a></p>
-<p>上面对于数据集要求略有严格，首先每张图片要有对应的文字描述（特征），另外，D在也要能够辨别出当y不符合X的描述时，生成的y是不好的。</p></div>
+<p>上面对于数据集要求略有严格，首先每张图片要有对应的文字描述（特征），另外，D在也要能够辨别出当y不符合X的描述时，生成的y是不好的。</p>
+<h1>DLC2：面对Unpaired Data 的解决方案————Cycle GAN</h1>
+<p>在DLC1中，我们实现了Conditional GAN，但究其根本，上述的GAN都是有“成对”数据的，即数据存在已知特征或对应的标签。那么，在DLC2中，我们要考虑没有成对标签的GAN。</p>
+<h2>什么时候出现“Unpaired”？</h2>
+<p>首先，我们需要了解一下什么情况下会出现Unpaired Data。风格迁移就是很好的例子。以图片风格迁移为例，想要把现实的照片迁移为二次元风格的图片，我们手中只有两个数据集，分别是现实照片和二次元图片，二者并没有明显的“Paired”关系。</p>
+<h2>如何在“Unpaired Data”情况下设计GAN</h2>
+<p>我们可以参考DLC的设计，将输入的高斯分布Z变为实际的照片采样，然后输入G.1中进行生成，得到Y.1。对于D.1，我们要做的是让其分辨Y和二次元图片X的区别，对于X给与高分，对于Y.1给与低分。</p>
+<p>需要注意的是，由于我们的任务是风格迁移，所以输出的Y需要和现实照片“相像”，所以我们引入第二个G.2，其任务是把G.1生成的Y.1作为输入，生成现实照片风格的图片（Y.2）（类似AE），随后将Y.2与原来的现实照片做比对，将该项评价和D的评分一起作为模型的优化条件。</p>
+<p>同样地，我们也可以对Y.1进行同样的操作，Y.1作为输入，通过G.3生成Y.3（现实照片风格的图像，也同样需要对应的D.2），然后将Y.3输入到G.4，生成二次元风格的Y.4，随后将Y.4和Y.1进行比对。</p>
+<p>整体的结构见下面的示意图：</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/3a615a59-fd86-4d44-af83-77583fd3c49b"><img src="https://github.com/user-attachments/assets/3a615a59-fd86-4d44-af83-77583fd3c49b" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
