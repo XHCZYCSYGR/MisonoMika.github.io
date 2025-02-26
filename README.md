@@ -1,5 +1,4 @@
 # 小火车的博客 :link: https://XHCZYCSYGR.github.io/MisonoMika.github.io 
-### 个人学习相关代码详见main/code
 ### :page_facing_up: [1](https://XHCZYCSYGR.github.io/MisonoMika.github.io/tag.html) 
 ### :speech_balloon: 0 
 ### :hibiscus: 5079 
