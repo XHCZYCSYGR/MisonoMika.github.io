@@ -10,11 +10,11 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="# 论文相关
+<meta name="description" content="# 论文相关 (https://arxiv.org/abs/2111.06377)
 ## Mask Loss
 损失函数为MSE，计算时只计算Masked部分的loss，可见部分不进行计算。">
 <meta property="og:title" content="MAE相关">
-<meta property="og:description" content="# 论文相关
+<meta property="og:description" content="# 论文相关 (https://arxiv.org/abs/2111.06377)
 ## Mask Loss
 损失函数为MSE，计算时只计算Masked部分的loss，可见部分不进行计算。">
 <meta property="og:type" content="article">
@@ -77,7 +77,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h1>论文相关</h1>
+<div class="markdown-body" id="postBody"><h1>论文相关 (<a href="https://arxiv.org/abs/2111.06377" rel="nofollow">https://arxiv.org/abs/2111.06377</a>)</h1>
 <h2>Mask Loss</h2>
 <p>损失函数为MSE，计算时只计算Masked部分的loss，可见部分不进行计算。<br>
 Masked Patch计算均值和标准差进行规一化mask，模型表现会更好。</p>
@@ -88,7 +88,12 @@ Masked Patch计算均值和标准差进行规一化mask，模型表现会更好�
 <li>Shuffle token list</li>
 <li>按照mask比例（75%），取前25%，后面舍弃（encoder输入）</li>
 <li>还原token list（unshuffle）（decoder输入）</li>
-</ol></div>
+</ol>
+<h2>相关实验</h2>
+<p>对于Figure 5</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ade514f4-2107-455a-8cd1-607b2fa1f770"><img src="https://github.com/user-attachments/assets/ade514f4-2107-455a-8cd1-607b2fa1f770" alt="Image" style="max-width: 100%;"></a></p>
+<p>实验操作为：训练完成后将encoder的输出作为一个classification（MLP）的输入（作为一个分类模型并进行训练），纵坐标为分类的准确率。<br>
+其中fine-tuning表示训练过程中对encoder和MLP的参数都进行调整；linear probing表示固定encoder，只调整MLP的参数。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
