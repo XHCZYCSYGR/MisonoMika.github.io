@@ -1,18 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>小火车的博客</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io</link><description>小笨蛋的学习记录</description><copyright>小火车的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/115867689?v=4</url><title>avatar</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io</link></image><lastBuildDate>Fri, 14 Mar 2025 07:43:58 +0000</lastBuildDate><managingEditor>小火车的博客</managingEditor><ttl>60</ttl><webMaster>小火车的博客</webMaster><item><title>MAE代码详解</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/MAE-dai-ma-xiang-jie.html</link><description># models_mae.py
-
-## MaskedAutoencoderViT类
-```python
-def __init__(self, img_size=224, patch_size=16, in_chans=3,        # 输入数据大小（224*224，16*16，RGB）
-                 embed_dim=1024, depth=24, num_heads=16,          # ViT参数，此处默认使用ViT-Large，可视算力情况修改
-                 decoder_embed_dim=512, decoder_depth=8, decoder_num_heads=16,   # maedecoder参数
-                 mlp_ratio=4., norm_layer=nn.LayerNorm, norm_pix_loss=False)   
-# transformer线性层的宽度 ，层归一化，计算loss前是否对像素值进行归一化
-
-```
-
-![Image](https://github.com/user-attachments/assets/c391b794-1eb3-4bb5-b02f-344129f62231)。</description><guid isPermaLink="true">https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/MAE-dai-ma-xiang-jie.html</guid><pubDate>Thu, 13 Mar 2025 09:42:28 +0000</pubDate></item><item><title>MAE论文相关</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/MAE-lun-wen-xiang-guan.html</link><description># 论文相关 (https://arxiv.org/abs/2111.06377)
-## Mask Loss
-损失函数为MSE，计算时只计算Masked部分的loss，可见部分不进行计算。</description><guid isPermaLink="true">https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/MAE-lun-wen-xiang-guan.html</guid><pubDate>Wed, 26 Feb 2025 07:15:47 +0000</pubDate></item><item><title>生成式对抗神经网络GAN</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/sheng-cheng-shi-dui-kang-shen-jing-wang-luo-GAN.html</link><description># 基本概念
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>小火车的博客</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io</link><description>小笨蛋的学习记录</description><copyright>小火车的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/115867689?v=4</url><title>avatar</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io</link></image><lastBuildDate>Tue, 08 Jul 2025 12:33:49 +0000</lastBuildDate><managingEditor>小火车的博客</managingEditor><ttl>60</ttl><webMaster>小火车的博客</webMaster><item><title>生成式对抗神经网络GAN</title><link>https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/sheng-cheng-shi-dui-kang-shen-jing-wang-luo-GAN.html</link><description># 基本概念
 ## GAN的任务
      顾名思义，我们的目标是生成和输入X类似或具有相同特征的图像、文本等。</description><guid isPermaLink="true">https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/sheng-cheng-shi-dui-kang-shen-jing-wang-luo-GAN.html</guid><pubDate>Tue, 14 Jan 2025 05:42:46 +0000</pubDate></item></channel></rss>
