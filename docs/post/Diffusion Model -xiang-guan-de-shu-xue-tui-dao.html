@@ -21,9 +21,7 @@
 ![Image](https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a)
 ![Image](https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e)
 
-# DDIM 相关
-## Background 
-基于DDPM的工作，目前已经得到了表现优良的扩散模型。">
+。">
 <meta property="og:title" content="Diffusion Model 相关的数学推导">
 <meta property="og:description" content="# DDPM 相关
 ## 基本过程的定义及化简
@@ -36,9 +34,7 @@
 ![Image](https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a)
 ![Image](https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e)
 
-# DDIM 相关
-## Background 
-基于DDPM的工作，目前已经得到了表现优良的扩散模型。">
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://XHCZYCSYGR.github.io/MisonoMika.github.io/post/Diffusion%20Model%20-xiang-guan-de-shu-xue-tui-dao.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/115867689?v=4">
@@ -108,12 +104,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4"><img src="https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4" alt="Image" style="max-width: 100%;"></a></p>
 <h2>损失函数的正道推导（ML）</h2>
 <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a"><img src="https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a" alt="Image" style="max-width: 100%;"></a><br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e"><img src="https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e" alt="Image" style="max-width: 100%;"></a></p>
-<h1>DDIM 相关</h1>
-<h2>Background</h2>
-<p>基于DDPM的工作，目前已经得到了表现优良的扩散模型。但是，由于DDPM在推导过程中利用了正向加噪过程具有Markov性质这一条件，其在逆向推理（Denoising）过程中只能“逐步去噪”，在step数较多时运算效率极其低下。为了解决DDPM的这一“痛点”，DDIM在DDPM的基础上构建了一个"non-Markov"的"Diffusion Model"。<br>
-个人理解上，DDIM实际上是借用DDPM的“骨架”，修改优化其反向去噪的部分，使模型效率提高。另外需要注意一点的是，DDIM修改后的"non-Markov"模型可以直接套用DDPM的预训练模型，下面会证明修改后两个模型的损失函数 $J_{\sigma}$ （DDIM）和 $L_{\gamma}$ （DDPM）是等价的。</p>
-<p>先看完EDM，后续会研究DDIM，SM，FM等相关模型</p></div>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e"><img src="https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e" alt="Image" style="max-width: 100%;"></a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -214,6 +205,6 @@ function iFrameLoading(){
 
 
 </script>
-<script>MathJax = {tex: {inlineMath: [["$", "$"]]}};</script><script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </html>
