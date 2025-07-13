@@ -1,4 +1,14 @@
 # DDPM 相关
+## 基本过程的定义及化简
+![Image](https://github.com/user-attachments/assets/f67d9ccd-921f-411f-af8b-e09dede2a85e)
+## 前向过程的“高瞻远瞩”
+![Image](https://github.com/user-attachments/assets/45e483be-beed-4d42-9f1b-dd6469bae546)
+## 逆向过程的概率分析（损失函数的邪道猜测）
+![Image](https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4)
+## 损失函数的正道推导（ML）
+![Image](https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a)
+![Image](https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e)
+
 # DDIM 相关
 ## Background 
 基于DDPM的工作，目前已经得到了表现优良的扩散模型。但是，由于DDPM在推导过程中利用了正向加噪过程具有Markov性质这一条件，其在逆向推理（Denoising）过程中只能“逐步去噪”，在step数较多时运算效率极其低下。为了解决DDPM的这一“痛点”，DDIM在DDPM的基础上构建了一个"non-Markov"的"Diffusion Model"。

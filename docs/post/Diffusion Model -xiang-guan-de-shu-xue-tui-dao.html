@@ -11,11 +11,31 @@
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
 <meta name="description" content="# DDPM 相关
+## 基本过程的定义及化简
+![Image](https://github.com/user-attachments/assets/f67d9ccd-921f-411f-af8b-e09dede2a85e)
+## 前向过程的“高瞻远瞩”
+![Image](https://github.com/user-attachments/assets/45e483be-beed-4d42-9f1b-dd6469bae546)
+## 逆向过程的概率分析（损失函数的邪道猜测）
+![Image](https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4)
+## 损失函数的正道推导（ML）
+![Image](https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a)
+![Image](https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e)
+
 # DDIM 相关
 ## Background 
 基于DDPM的工作，目前已经得到了表现优良的扩散模型。">
 <meta property="og:title" content="Diffusion Model 相关的数学推导">
 <meta property="og:description" content="# DDPM 相关
+## 基本过程的定义及化简
+![Image](https://github.com/user-attachments/assets/f67d9ccd-921f-411f-af8b-e09dede2a85e)
+## 前向过程的“高瞻远瞩”
+![Image](https://github.com/user-attachments/assets/45e483be-beed-4d42-9f1b-dd6469bae546)
+## 逆向过程的概率分析（损失函数的邪道猜测）
+![Image](https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4)
+## 损失函数的正道推导（ML）
+![Image](https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a)
+![Image](https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e)
+
 # DDIM 相关
 ## Background 
 基于DDPM的工作，目前已经得到了表现优良的扩散模型。">
@@ -80,6 +100,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><h1>DDPM 相关</h1>
+<h2>基本过程的定义及化简</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f67d9ccd-921f-411f-af8b-e09dede2a85e"><img src="https://github.com/user-attachments/assets/f67d9ccd-921f-411f-af8b-e09dede2a85e" alt="Image" style="max-width: 100%;"></a></p>
+<h2>前向过程的“高瞻远瞩”</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/45e483be-beed-4d42-9f1b-dd6469bae546"><img src="https://github.com/user-attachments/assets/45e483be-beed-4d42-9f1b-dd6469bae546" alt="Image" style="max-width: 100%;"></a></p>
+<h2>逆向过程的概率分析（损失函数的邪道猜测）</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4"><img src="https://github.com/user-attachments/assets/652af346-565a-4055-908c-00bbdfd3a7a4" alt="Image" style="max-width: 100%;"></a></p>
+<h2>损失函数的正道推导（ML）</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a"><img src="https://github.com/user-attachments/assets/b556a441-5279-4700-87bd-583ef3f9976a" alt="Image" style="max-width: 100%;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e"><img src="https://github.com/user-attachments/assets/34964ae1-35d5-45bb-bc73-361b4b31934e" alt="Image" style="max-width: 100%;"></a></p>
 <h1>DDIM 相关</h1>
 <h2>Background</h2>
 <p>基于DDPM的工作，目前已经得到了表现优良的扩散模型。但是，由于DDPM在推导过程中利用了正向加噪过程具有Markov性质这一条件，其在逆向推理（Denoising）过程中只能“逐步去噪”，在step数较多时运算效率极其低下。为了解决DDPM的这一“痛点”，DDIM在DDPM的基础上构建了一个"non-Markov"的"Diffusion Model"。<br>
