@@ -46,7 +46,7 @@ $$
 \end{aligned}\\
 $$
 
-其中 $\lambda(\sigma)$用来平衡模型对于不同 $\sigma$的关注度， $w(\sigma)=\lambda(\sigma) C_{out}^2(\sigma)$， $F_{target}(n,\sigma,y)=\frac{1}{C_{out}(\sigma)} \left(y-C_{skip}(\sigma)(\textbf{y+n}) \right)$表示模型的目标。
+其中 $w(\sigma)$用来平衡模型对于不同 $\sigma$的关注度， $w(\sigma)=\lambda(\sigma) C_{out}^2(\sigma)$， $F_{target}(n,\sigma,y)=\frac{1}{C_{out}(\sigma)} \left(y-C_{skip}(\sigma)(\textbf{y+n}) \right)$表示模型的目标。
 ## 超参数设定
 为了保证训练过程的稳定，所以需要对上述损失函数中的超参数 $C_{skip},C_{in},C_{out},\lambda(\sigma)$做出约束。
 ### 对神经网络输入的要求
@@ -54,10 +54,10 @@ $$
 
 $$
 \begin{aligned}
-Var_{y,n} \left[  C_{in}(\sigma)(y+n)  \right]&=1\\
-C_{in}^2(\sigma)Var_{y,n}[y+n]&= 1\\
-C_{in}^2(\sigma) \left(  \sigma_{data}^2 + \sigma^2 \right)&= 1\\
-C_{in}(\sigma)&= 1 / \sqrt{  \sigma_{data}^2 + \sigma^2 }
+Var_{y,n} \left[  C_{in}(\sigma)(y+n)  \right]=1\\
+C_{in}^2(\sigma)Var_{y,n}[y+n]= 1\\
+C_{in}^2(\sigma) \left(  \sigma_{data}^2 + \sigma^2 \right)= 1\\
+C_{in}(\sigma)= 1 / \sqrt{  \sigma_{data}^2 + \sigma^2 }
 \end{aligned}
 $$ 
 ### 对训练目标的要求
@@ -65,10 +65,55 @@ $$
 
 $$
 \begin{align}
-Var_{y,n} \left[  \frac{1}{C_{out}(\sigma)} \left(y-C_{skip}(\sigma)(\textbf{y+n}) \right)   \right] &= 1\\
-\frac{1}{C_{out}^2(\sigma)}Var_{y,n} \left[  (1-C_{skip}(\sigma))y-C_{skip}(\sigma)n \right] &= 1\\
-C_{out}^2(\sigma) &=  (1-C_{skip}(\sigma))^2\sigma_{data}^2-C_{skip}^2(\sigma)\sigma^2
+Var_{y,n} \left[  \frac{1}{C_{out}(\sigma)} \left(y-C_{skip}(\sigma)(\textbf{y+n}) \right)   \right] = 1\\
+\frac{1}{C_{out}^2(\sigma)}Var_{y,n} \left[  (1-C_{skip}(\sigma))y-C_{skip}(\sigma)n \right] = 1\\
+C_{out}^2(\sigma) =  (1-C_{skip}(\sigma))^2\sigma_{data}^2-C_{skip}^2(\sigma)\sigma^2
 \end{align}
+$$
+
+从上述 $C_{out}^2(\sigma)$的表达式可以发现， $C_{out}^2(\sigma)$d的大小和 $C_{skip}(\sigma)$有关，所以我们可以在求得 $C_{skip}(\sigma)$的同时限制（最小化） $C_{out}^2(\sigma)$的范围。直接对 $C_{skip}(\sigma)$求导得：
+
+$$
+\begin{aligned}
+\frac{\mathrm{d} C_{out}^2(\sigma) }{\mathrm{d} C_{skip}(\sigma)} = 0\\
+2\sigma_{data}(C_{skip}(sigma)-1)+2C_{skip}(\sigma)\sigma^2 = 0\\
+C_{skip}(\sigma) = \frac{\sigma_{data}^2}{\sigma^2+\sigma_{data}^2}
+\end{aligned}
+$$
+
+讲求得的 $C_{skip}(\sigma)$带入 $C_{out}^2(\sigma)$中得：
+
+$$
+\begin{aligned}
+C_{out}^2(\sigma)=\left[  1-  \frac{\sigma_{data}^2}{\sigma^2+\sigma_{data}^2} \right]^2\sigma_{data}^2+
+\left[  \frac{\sigma_{data}^2}{\sigma^2+\sigma_{data}^2} \right]^2\sigma^2\\
+C_{out}(\sigma)=\frac{\sigma  \cdot \sigma{data}}{\sqrt{\sigma^2+\sigma_{data}^2}}
+\end{aligned}
+$$
+
+### 平等关注所有样本
+前面说过， $w(\sigma)$用来平衡模型对于不同 $\sigma$的关注度，对所有样本一视同仁也即：
+
+$$
+\begin{aligned}
+w(\sigma)=1\\
+\lambda(\sigma) C_{out}^2(\sigma)=1\\
+\lambda(\sigma)  = \frac{1}{C_{out}^2(\sigma)}\\
+\lambda(\sigma) = \frac{\sigma^2+\sigma_{data}^2}{(\sigma  \cdot \sigma{data})^2}
+\end{aligned}
+$$
+
+### 整合
+在神经网络初始值 $F_{\theta}(\cdot)=0$的前提下，将上述推导的超参数带入损失函数，得：
+
+
+$$
+\begin{aligned}
+E_{n,\sigma,y}  \left[  \lambda(\sigma) C_{out}^2(\sigma) || F_{\theta}(C_{in}(\sigma)(\textbf{y+n});C_{noise}(\sigma))-\frac{1}{C_{out}(\sigma)} \left(y-C_{skip}(\sigma)(\textbf{y+n}) \right)  ||^2_2 \right]\\ 
+=E_{\sigma,y} \left[ ||  \frac{\sigma^2+\sigma_{data}^2}{(\sigma  \cdot \sigma{data})^2} (\frac{\sigma_{data}^2}{\sigma^2+\sigma_{data}^2}(y+n)-y)  ||_2^2  \right] \\ 
+=E_{\sigma,y} \left[ ||  \frac{\sigma^2+\sigma_{data}^2}{(\sigma  \cdot \sigma{data})^2} (\frac{\sigma_{data}^2}{\sigma^2+\sigma_{data}^2}(y+n)-y)  ||_2^2  \right] \\ 
+dsad
+\end{aligned}
 $$
 
 
